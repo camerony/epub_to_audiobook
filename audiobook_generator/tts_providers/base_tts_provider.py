@@ -3,6 +3,7 @@ from typing import List
 from audiobook_generator.config.general_config import GeneralConfig
 
 TTS_AZURE = "azure"
+TTS_AZUREOPENAI = "azureopenai"
 TTS_OPENAI = "openai"
 TTS_EDGE = "edge"
 
@@ -34,13 +35,15 @@ class BaseTTSProvider:  # Base interface for TTS providers
 
 # Common support methods for all TTS providers
 def get_supported_tts_providers() -> List[str]:
-    return [TTS_AZURE, TTS_OPENAI, TTS_EDGE]
-
+    return [TTS_AZURE, TTS_AZUREOPENAI, TTS_OPENAI, TTS_EDGE]
 
 def get_tts_provider(config) -> BaseTTSProvider:
     if config.tts == TTS_AZURE:
         from audiobook_generator.tts_providers.azure_tts_provider import AzureTTSProvider
         return AzureTTSProvider(config)
+    elif config.tts == TTS_AZUREOPENAI:
+        from audiobook_generator.tts_providers.azure_openai_tts_provider import AzureOpenAITTSProvider
+        return AzureOpenAITTSProvider(config)
     elif config.tts == TTS_OPENAI:
         from audiobook_generator.tts_providers.openai_tts_provider import OpenAITTSProvider
         return OpenAITTSProvider(config)

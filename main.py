@@ -21,7 +21,7 @@ def handle_args():
         "--tts",
         choices=get_supported_tts_providers(),
         default=get_supported_tts_providers()[0],
-        help="Choose TTS provider (default: azure). azure: Azure Cognitive Services, openai: OpenAI TTS API. When using azure, environment variables MS_TTS_KEY and MS_TTS_REGION must be set. When using openai, environment variable OPENAI_API_KEY must be set.",
+        help="Choose TTS provider (default: azure). azure: Azure Cognitive Services, openai: OpenAI TTS API. When using azure, environment variables MS_TTS_KEY and MS_TTS_REGION or for Azure OpenAI - AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT. When using openai, environment variable OPENAI_API_KEY must be set.",
     )
     parser.add_argument(
         "--log",
